@@ -8,20 +8,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Entity
+@Table(name = "orders", schema = "public")
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id")
     private UUID id;
 
     @NotNull
+    @Column(name = "dateTime")
     private LocalDateTime dateTime;
 
     @NotNull
     @Enumerated(EnumType.STRING)
+    @Column(name = "status")
     private Status status;
 
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy="order")
+    @Column(name = "items")
     private List<OrderItem> items = new ArrayList<>();
 
     public UUID getId() {

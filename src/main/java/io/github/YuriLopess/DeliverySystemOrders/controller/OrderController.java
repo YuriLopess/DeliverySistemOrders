@@ -37,9 +37,9 @@ public class OrderController {
     public ResponseEntity<OrderDTO> placeOrder(@RequestBody @Valid OrderDTO dto, UriComponentsBuilder uriBuilder) {
         OrderDTO orderPlaced = service.createOrder(dto);
 
-        URI endereco = uriBuilder.path("/pedidos/{id}").buildAndExpand(orderPlaced.getId()).toUri();
+        URI addres = uriBuilder.path("/orders/{id}").buildAndExpand(orderPlaced.getId()).toUri();
 
-        return ResponseEntity.created(endereco).body(orderPlaced);
+        return ResponseEntity.created(addres).body(orderPlaced);
 
     }
 
