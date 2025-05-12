@@ -27,7 +27,6 @@ public class Order {
     private Status status;
 
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy="order")
-    @Column(name = "items")
     private List<OrderItem> items = new ArrayList<>();
 
     public UUID getId() {

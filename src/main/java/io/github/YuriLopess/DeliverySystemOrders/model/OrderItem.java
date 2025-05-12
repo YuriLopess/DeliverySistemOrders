@@ -1,26 +1,29 @@
 package io.github.YuriLopess.DeliverySystemOrders.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
 import java.util.UUID;
 
+@Entity
+@Table(name = "orderItem", schema = "public")
 public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id")
     private UUID id;
 
     @NotNull
     @Positive
+    @Column(name = "quantity")
     private Integer quantity;
 
+    @Column(name = "description")
     private String description;
 
     @ManyToOne(optional = false)
+    @JoinColumn(name = "order_id")
     private Order order;
 
     public UUID getId() {
